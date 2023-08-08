@@ -18,15 +18,18 @@
         </nav>
     </header>
 
+    
+
     <main>
         <section class="report-section">
             <h2>Report Phishing</h2>
-            <form id="report-form" action="/report_phish" method="POST">
-                <label for="phished-url">Phished URL:</label>
-                <input type="url" id="phished-url" name="phished_url" placeholder="Enter the URL" required>
+            <form id="report-form" action="/report_phish/" method="POST">
+                {% csrf_token %}
+                <label for="phished_url">Phished URL:</label>
+                <input type="url" id="phished_url" name="phished_url" placeholder="Enter the URL" required>
 
                 <label for="email">Your Email:</label>
-                <input type="email" id="your-email" name="your_email" placeholder="Enter your Email" required>
+                <input type="email" id="your_email" name="your_email" placeholder="Enter your Email" required>
 
                 <label for="comment">Comment:</label>
                 <textarea id="comment" name="comment" rows="4" placeholder="Why Phish??"></textarea>

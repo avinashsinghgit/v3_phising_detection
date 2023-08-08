@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render, HttpResponse
+from phish.models import report
 # Create your views here.
 
 from joblib import dump
@@ -57,6 +58,19 @@ def about(request):
 
 def report(request):
     return render(request,"report_phish.html")
+
+def report_phish(request):
+    if request.method == "POST":
+        print("This is POST")
+        phished_url = request.POST['phished_url']
+        email = request.POST['name']
+        comment = request.POST['comment']
+        # print(phished_url,email,comment)
+        ins = report_phish(phished_url=phished_url, email=email, comment=comment)
+        ins.save()
+        print("the data into DB")
+        
+
 
 
 
@@ -546,7 +560,5 @@ def search(request):
         return render(request, "result.html", {'results':output})
     
     return render(request, 'search.html')
-
-
 
 
